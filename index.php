@@ -8,9 +8,10 @@
 	   if(isset($_POST['add_contact'])){//
 		  $names = ucfirst(mysql_real_escape_string($_POST['names']));
 		  $phone = mysql_real_escape_string($_POST['phone']);
+		  $email = mysql_real_escape_string($_POST['email']);
 		  
 		  
-		 $query = "INSERT INTO contactlist ( names, phone) VALUES ( '{$names}', '{$phone}')";
+		 $query = "INSERT INTO contactlist ( names, phone, email) VALUES ( '{$names}', '{$phone}' , '{$email}')";
 		 $result = mysql_query($query, $connection);
 		 header("Location: index.php?submitted=true");
 		 }//
@@ -21,8 +22,9 @@
 				   $id = $_POST['id']; 
 				   $names = ucfirst(mysql_real_escape_string($_POST['names']));
 		           $phone = mysql_real_escape_string($_POST['phone']); 
+				   $email = mysql_real_escape_string($_POST['email']);
 				   
-				   $query = "UPDATE contactlist SET names = '$names', phone = '$phone' WHERE id = $id";				   
+				   $query = "UPDATE contactlist SET names = '$names', phone = '$phone', email = '$email' WHERE id = $id";				   
 				   $result = mysql_query($query, $connection);
 				  
 				   header("Location: index.php");
@@ -68,7 +70,7 @@
   
 <hr style="border: 4px double #ccc;" />
  
-  <?php  if(isset($_GET['submitted'])) { //added contact item successfully ?>
+  <?php  if(isset($_GET['submitted'])) { //added contact successfully ?>
   
   <div class="alert alert-success">
   <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -78,8 +80,9 @@
 <div class="col-md-6">
  <h2>Add New</h2>
                 <form action="index.php" method="post" >
-                <input type="text" class="form-control add-todo" placeholder="Names" name="names" required><br>
-                <input type="text" class="form-control add-todo" placeholder="Phone No." name="phone" required><br>
+                <input type="text" class="form-control add-contact" placeholder="Names." name="names" required><br>
+                <input type="text" class="form-control add-contact" placeholder="Phone No." name="phone" required><br>
+                <input type="email" class="form-control add-contact" placeholder="Email." name="email" required><br>
                 <button type="submit" class="btn btn-primary" name="add_contact">Add New Contact</button>
                 </form>
                     
@@ -91,6 +94,7 @@
                         <th>#</th>
                         <th>Names</th>
                         <th>Phone</th>
+                        <th>Email</th>
                         <th style="text-align:center">Action</th>
                       </tr>
                     </thead>
@@ -107,9 +111,10 @@
                       <input type="hidden" name="id" value="<?php echo $row['id']; ?>"  />
                       <tr>
                         <td><?php echo $count; ?></td>
-                        <td><input type="text" value= "<?php echo $row['names']; ?>" name="names" /> </td>
-                        <td><input type="text" value= "<?php echo $row['phone']; ?>" name="phone" /> </td>
-                        <td style="text-align:center" >
+                        <td><input type="text" style="width: 110px;" value= "<?php echo $row['names']; ?>" name="names" /> </td>
+                        <td><input type="text" style="width: 110px;" value= "<?php echo $row['phone']; ?>" name="phone" /> </td>
+                        <td><input type="text" style="width: 170px;" value= "<?php echo $row['email']; ?>" name="email" /> </td>
+                        <td style="text-align:center;" >
                        
                        <button type="submit" data-toggle="tooltip" data-placement="top" title="Edit" name="edit_btn" class="btn btn-info btn-xs"> <span class="glyphicon glyphicon-edit"></span> </button>
                        
@@ -133,6 +138,7 @@
                         <th>#</th>
                         <th>Names</th>
                         <th>Phone</th> 
+                        <th>Email</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -148,8 +154,9 @@
                         <td><?php echo $count; ?></td>
                         <td><?php echo $row['names']; ?></td>
                         <td><?php echo $row['phone']; ?></td>
+                        <td><?php echo $row['email']; ?></td>
                      </tr>
-                      
+                     
                        <?php  
 					  $count++; 
 					  } ?>

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 21, 2015 at 06:16 AM
+-- Generation Time: Oct 27, 2015 at 05:54 AM
 -- Server version: 5.6.12-log
 -- PHP Version: 5.4.12
 
@@ -32,15 +32,17 @@ CREATE TABLE IF NOT EXISTS `contactlist` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `names` varchar(200) NOT NULL,
   `phone` varchar(200) NOT NULL,
+  `email` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `contactlist`
 --
 
-INSERT INTO `contactlist` (`id`, `names`, `phone`) VALUES
-(4, 'John doe', '0111111525');
+INSERT INTO `contactlist` (`id`, `names`, `phone`, `email`) VALUES
+(4, 'John doe', '0111111525', 'johndoe@yahoo.com'),
+(5, 'Steven ', '0786922328', 'stevenkirika@yahoo.com');
 
 -- --------------------------------------------------------
 

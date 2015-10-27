@@ -1,8 +1,8 @@
 <?php
 
-// ** MySQL settings - You can get this info from your web host ** //
 
-define('DB_NAME', 'db_contactlist');
+
+define('DB_NAME', 'contactlist');
 
 /** MySQL database username */
 define('DB_USER', 'root');
